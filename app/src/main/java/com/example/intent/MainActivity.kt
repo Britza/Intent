@@ -1,12 +1,16 @@
 package com.example.intent
 
 import android.content.ContentValues.TAG
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
@@ -17,11 +21,13 @@ class MainActivity : AppCompatActivity() {
     //Declaramos la variable auth
     private lateinit var auth: FirebaseAuth
 
+
     //Declaramos las variables de email, contraseña, registrar e iniciar
     lateinit var email: EditText
     lateinit var password: EditText
     lateinit var registrar: Button
     lateinit var iniciar: Button
+    lateinit var mapaIntent: Intent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         password = findViewById(R.id.password)
         registrar = findViewById(R.id.registrar)
         iniciar = findViewById(R.id.iniciar)
+        mapaIntent = Intent(this, MapsActivity::class.java)
 
 
         //Inicializamos Fire base auth
@@ -47,6 +54,7 @@ class MainActivity : AppCompatActivity() {
         //Hacemos la llamada para el metodo de iniciar sesión
         iniciar.setOnClickListener {
             signIn(email.text.toString(), password.text.toString())
+
         }
 
     }
@@ -86,6 +94,8 @@ class MainActivity : AppCompatActivity() {
      */
     private fun signIn(email: String, password: String) {
 
+
+
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -95,6 +105,8 @@ class MainActivity : AppCompatActivity() {
 
                     val user = auth.currentUser
                     updateUI(user)
+                    startActivity(mapaIntent)
+
                 } else {
                     //Si los datos no son correctos, envia un mensaje al usuario,
                     Log.w(TAG, "signInWithEmail:failure", task.exception)
@@ -109,3 +121,4 @@ class MainActivity : AppCompatActivity() {
             }
     }
 }
+
