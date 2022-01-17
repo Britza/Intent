@@ -47,7 +47,8 @@ dependencies {
     //dependencia para la biblioteca de autenticación de Firebase
     implementation 'com.google.firebase:firebase-auth-ktx'
     //permite administrar todas las versiones de tus bibliotecas de Firebase con solo especificar una versión, la versión de la BoM.
-    implementation platform('com.google.firebase:firebase-bom:29.0.1')
+    implementation platform('com.google.firebase:firebase-bom:29.0.3')
+    implementation 'com.google.firebase:firebase-database-ktx'
 }
 
 apply plugin: 'com.android.application'
