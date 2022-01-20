@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -15,8 +16,15 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.intent.databinding.ActivityMapsBinding
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
+
+    private val TAG = "RealTime"
+    //Declaramos la variable de database
+    private lateinit var database: DatabaseReference
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
@@ -28,10 +36,16 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMapsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        //Inicializamos la database
+        database = Firebase.database("https://trimestre-218c9-default-rtdb.europe-west1.firebasedatabase.app/").reference
+
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
         mapFragment.getMapAsync(this)
+
+        writeNewUser("AA03", 4.567, 5.678, "pepe" )
     }
 
     /**
@@ -47,6 +61,15 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap = googleMap
         mMap.uiSettings.isZoomControlsEnabled = true
         enableMyLocation()
+    }
+
+    private fun writeNewUser(id: String, lt: Double, lg: Double, nombre: String){
+        Log.d(TAG, "Escribiendo datos")
+        val user = users( lt, lg, nombre)
+        Log.d (TAG, user.toString())
+
+        database.child("users/"+id).setValue(user)
+
     }
 
     /**

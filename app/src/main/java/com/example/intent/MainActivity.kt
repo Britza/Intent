@@ -22,7 +22,7 @@ class MainActivity : AppCompatActivity() {
     //Declaramos la variable auth
     private lateinit var auth: FirebaseAuth
     //Declaramos la variable de database
-    private lateinit var database: DatabaseReference
+    //private lateinit var database: DatabaseReference
 
 
     //Declaramos las variables de email, contraseña, registrar e iniciar
@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         //Inicializamos la database
-        database = Firebase.database.reference
+        //database = Firebase.database("https://trimestre-218c9-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
 
 
@@ -66,21 +66,20 @@ class MainActivity : AppCompatActivity() {
             signIn(email.text.toString(), password.text.toString())
 
         }
-        realTime.setOnClickListener {
+       /* realTime.setOnClickListener {
             writeNewUser("AA03", 4.567, 5.678, "pepe" )
-        }
+        }*/
 
     }
 
-    private fun writeNewUser(id: String, lt: Double, lg: Double, nombre: String){
+    /*private fun writeNewUser(id: String, lt: Double, lg: Double, nombre: String){
         Log.d(TAG, "Escribiendo datos")
         val user = users( lt, lg, nombre)
         Log.d (TAG, user.toString())
 
-        database.setValue("{a:1}")
+        database.child("users/"+id).setValue(user)
 
-    }
-
+    }*/
     /**
      * Método que sirve para crear una cuenta a través de un email y contraseña
      */
