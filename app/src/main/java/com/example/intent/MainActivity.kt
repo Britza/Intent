@@ -53,14 +53,6 @@ class MainActivity : AppCompatActivity() {
         //database = Firebase.database("https://trimestre-218c9-default-rtdb.europe-west1.firebasedatabase.app/").reference
 
 
-
-
-        //Hacemos la llamada para el metodo de crear cuenta
-        registrar.setOnClickListener {
-            createAccount(email.text.toString(), password.text.toString())
-        }
-
-
         //Hacemos la llamada para el metodo de iniciar sesión
         iniciar.setOnClickListener {
             signIn(email.text.toString(), password.text.toString())
@@ -80,31 +72,6 @@ class MainActivity : AppCompatActivity() {
         database.child("users/"+id).setValue(user)
 
     }*/
-    /**
-     * Método que sirve para crear una cuenta a través de un email y contraseña
-     */
-
-    private fun createAccount(email: String, password: String) {
-
-        auth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    //Empezamos creando un usuario con email.
-                    Log.d(TAG, "createUserWithEmail:success")
-                    Log.d("estado", "usuario registrado")
-                    val user = auth.currentUser
-                    updateUI(user)
-                } else {
-                    // Si el inicio de sesión falla, enviamos un mensaje al usuario.
-                    Log.w(TAG, "createUserWithEmail:failure", task.exception)
-                    Log.d("estado", "usuario NO registrado")
-
-                    Toast.makeText(baseContext, "Authentication failed.", Toast.LENGTH_SHORT).show()
-                    updateUI(null)
-                }
-            }
-
-    }
 
     private fun updateUI(user: FirebaseUser?) {
         Log.d("estado", "" + auth.currentUser?.uid)
