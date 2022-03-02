@@ -53,33 +53,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
 
-    <Button
-        android:id="@+id/realtime"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:text="RealTime"
-        tools:layout_editor_absoluteX="138dp"
-        tools:layout_editor_absoluteY="604dp" />
-
     <TextView
         android:id="@+id/textView2"
         android:layout_width="157dp"
         android:layout_height="25dp"
         android:layout_marginStart="74dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginBottom="299dp"
         android:text="¿No tienes cuenta?"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="407dp" />
+        app:layout_constraintTop_toBottomOf="@+id/iniciar" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="104dp"
         android:layout_height="25dp"
+        android:layout_marginTop="84dp"
         android:layout_marginEnd="76dp"
+        android:layout_marginBottom="299dp"
+        android:onClick="registrate"
         android:text="Registrate"
         android:textColor="#F12E2E"
         android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="407dp" />
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/iniciar"
+        tools:ignore="TouchTargetSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -28,10 +29,11 @@ class MainActivity : AppCompatActivity() {
     //Declaramos las variables de email, contraseña, registrar e iniciar
     lateinit var email: EditText
     lateinit var password: EditText
-    lateinit var registrar: Button
     lateinit var iniciar: Button
     lateinit var mapaIntent: Intent
-    lateinit var realTime: Button
+    lateinit var profesionales: Intent
+    lateinit var variable: String
+    //lateinit var realTime: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,10 +42,11 @@ class MainActivity : AppCompatActivity() {
         //Inicializamos las variables creadas anteriormente
         email = findViewById(R.id.email)
         password = findViewById(R.id.password)
-        registrar = findViewById(R.id.registrar)
         iniciar = findViewById(R.id.iniciar)
-        mapaIntent = Intent(this, MapsActivity::class.java)
-        realTime = findViewById(R.id.realtime)
+        variable = intent.getStringExtra(EXTRA_MESSAGE).toString()
+        profesionales = Intent(this, Profesionales::class.java)
+        mapaIntent = Intent(this, Pacientes::class.java)
+        //realTime = findViewById(R.id.realtime)
 
 
         //Inicializamos Fire base auth
@@ -83,7 +86,6 @@ class MainActivity : AppCompatActivity() {
     private fun signIn(email: String, password: String) {
 
 
-
         auth.signInWithEmailAndPassword(email, password)
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -93,7 +95,14 @@ class MainActivity : AppCompatActivity() {
 
                     val user = auth.currentUser
                     updateUI(user)
-                    startActivity(mapaIntent)
+
+                    if ("paciente" == variable) {
+                        startActivity(mapaIntent)
+                    }
+                    else{
+                        startActivity(profesionales)
+                    }
+
 
                 } else {
                     //Si los datos no son correctos, envia un mensaje al usuario,
@@ -107,6 +116,13 @@ class MainActivity : AppCompatActivity() {
                     updateUI(null)
                 }
             }
+    }
+
+    fun registrate(View: View){
+        var intent = Intent (this, Registrarse::class.java).apply {
+            putExtra(EXTRA_MESSAGE, variable)
+        }
+        startActivity(intent)
     }
 }
 

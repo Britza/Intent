@@ -7,30 +7,15 @@
     android:background="#3BD1BF"
     tools:context=".Inicio">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="253dp"
-        android:layout_height="385dp"
-        android:layout_marginStart="200dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="206dp"
-        android:layout_marginBottom="478dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.487"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.228"
-        app:srcCompat="@drawable/agarimoinicial" />
-
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/paciente"
         android:layout_width="141dp"
         android:layout_height="54dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="82dp"
+        android:layout_marginTop="67dp"
         android:layout_marginBottom="119dp"
         android:backgroundTint="#FFFFFF"
+        android:onClick="paciente"
         android:text="PACIENTE"
         android:textColor="#3BD1BF"
         android:textSize="14sp"
@@ -38,18 +23,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0"
         tools:ignore="TextContrastCheck" />
 
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/profesional"
         android:layout_width="141dp"
         android:layout_height="54dp"
-        android:layout_marginTop="82dp"
+        android:layout_marginTop="67dp"
         android:layout_marginEnd="44dp"
         android:layout_marginBottom="119dp"
         android:backgroundTint="#FFFFFF"
+        android:onClick="profesional"
         android:text="PROFESIONAL"
         android:textColor="#3BD1BF"
         android:textSize="14sp"
@@ -57,7 +42,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintVertical_bias="0.0"
         tools:ignore="TextContrastCheck" />
 
     <TextView
@@ -76,5 +60,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="273dp"
+        android:layout_height="325dp"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="69dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/agarimoinicial" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
